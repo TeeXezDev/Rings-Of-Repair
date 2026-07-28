@@ -13,7 +13,7 @@ import net.minecraft.world.item.ItemStack;
 public class TabInit {
     public static final ResourceKey<CreativeModeTab> RING_REPAIR_GROUP = ResourceKey.create(
             Registries.CREATIVE_MODE_TAB,
-            Identifier.of(RingsOfRepair.MOD_ID, "ring_repair_group")
+            Identifier.fromNamespaceAndPath(RingsOfRepair.MOD_ID, "ring_repair_group")
     );
 
     public static void addTab() {

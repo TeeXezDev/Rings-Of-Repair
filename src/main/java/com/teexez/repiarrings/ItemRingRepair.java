@@ -10,12 +10,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
-import java.util.List;
+import java.util.function.Consumer;
 
 public class ItemRingRepair extends Item {
     private static final TagKey<Item> DURABILITY_TAG = TagKey.create(
-            Registries.ITEM, Identifier.of("minecraft", "enchantable/durability"));
+            Registries.ITEM, Identifier.fromNamespaceAndPath("minecraft", "enchantable/durability"));
 
     public ItemRingRepair(Properties settings) {
         super(settings);
@@ -43,8 +44,8 @@ public class ItemRingRepair extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(Component.translatable("item." + RingsOfRepair.MOD_ID + ".ring_of_repair.tip1").withStyle(ChatFormatting.DARK_GRAY));
-        tooltip.add(Component.translatable("item." + RingsOfRepair.MOD_ID + ".ring_of_repair.tip2").withStyle(ChatFormatting.DARK_GREEN));
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay display, Consumer<Component> tooltipAdder, TooltipFlag type) {
+        tooltipAdder.accept(Component.translatable("item." + RingsOfRepair.MOD_ID + ".ring_of_repair.tip1").withStyle(ChatFormatting.DARK_GRAY));
+        tooltipAdder.accept(Component.translatable("item." + RingsOfRepair.MOD_ID + ".ring_of_repair.tip2").withStyle(ChatFormatting.DARK_GREEN));
     }
 }

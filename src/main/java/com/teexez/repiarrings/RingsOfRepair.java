@@ -19,7 +19,7 @@ public class RingsOfRepair implements ModInitializer {
 
         Registry.register(
                 BuiltInRegistries.ITEM,
-                Identifier.of(MOD_ID, "ring_of_repair"),
+                Identifier.fromNamespaceAndPath(MOD_ID, "ring_of_repair"),
                 RING_OF_REPAIR
         );
 
