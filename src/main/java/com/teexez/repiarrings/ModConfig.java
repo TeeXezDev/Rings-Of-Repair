@@ -28,10 +28,10 @@ public class ModConfig {
 
         File configFile = new File(configPath.toString() + CONFIG_FILENAME);
         if (configFile.exists()) {
-            RingsOfRepair.LOGGER.always().log("{} config settings json5 found", MOD_ID);
+            RingsOfRepair.LOGGER.info("{} config settings json5 found", MOD_ID);
             validateConfigFile();
         } else {
-            RingsOfRepair.LOGGER.always().log("{} config settings json5 not found, creating default", MOD_ID);
+            RingsOfRepair.LOGGER.info("{} config settings json5 not found, creating default", MOD_ID);
             createDefaultConfig();
         }
 
@@ -61,14 +61,14 @@ public class ModConfig {
         for (Map.Entry<String, JsonElement> entry : configDefault.entrySet()) {
             if (!configFileData.containsKey(entry.getKey())) {
                 configFileData.putDefault(entry.getKey(), entry.getValue(), null);
-                RingsOfRepair.LOGGER.always().log("config key added: " + entry.getKey());
+                RingsOfRepair.LOGGER.info("config key added: " + entry.getKey());
             }
         }
 
         for (Map.Entry<String, JsonElement> entry : configFileData.entrySet()) {
             if (!configDefault.containsKey(entry.getKey())) {
                 configFileData.remove(entry.getKey(), entry.getValue());
-                RingsOfRepair.LOGGER.always().log("config key removed: " + entry.getKey());
+                RingsOfRepair.LOGGER.info("config key removed: " + entry.getKey());
             }
         }
 
@@ -101,7 +101,7 @@ public class ModConfig {
             throw new RuntimeException(e);
         }
 
-        RingsOfRepair.LOGGER.always().log("{} default config created at: " + configFile, MOD_ID);
+        RingsOfRepair.LOGGER.info("{} default config created at: " + configFile, MOD_ID);
 
         Jankson jankson = Jankson.builder().build();
         String result = jankson.toJson(new ModConfigSettings()).toJson(true, true);

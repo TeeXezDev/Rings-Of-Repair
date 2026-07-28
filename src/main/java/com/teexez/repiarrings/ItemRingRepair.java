@@ -1,9 +1,11 @@
 package com.teexez.repiarrings;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -12,12 +14,15 @@ import net.minecraft.world.level.Level;
 import java.util.List;
 
 public class ItemRingRepair extends Item {
+    private static final TagKey<Item> DURABILITY_TAG = TagKey.create(
+            Registries.ITEM, Identifier.of("minecraft", "enchantable/durability"));
+
     public ItemRingRepair(Properties settings) {
         super(settings);
     }
 
     public static void repairItems(Level world, Player player) {
-        if (world.isClientSide) return;
+        if (world.isClientSide()) return;
 
         ServerPlayer serverPlayer = (ServerPlayer) player;
 
@@ -27,7 +32,7 @@ public class ItemRingRepair extends Item {
             ItemStack stack2 = serverPlayer.getInventory().getItem(i);
 
             if (stack2.is(TagInit.RING_REPAIR_BLACKLIST)) continue;
-            if (!stack2.is(ItemTags.DURABILITY)) continue;
+            if (!stack2.is(DURABILITY_TAG)) continue;
             if (stack2.isEmpty()) continue;
             if (stack2 == serverPlayer.getMainHandItem()) continue;
             if (!stack2.isDamaged()) continue;
@@ -38,7 +43,7 @@ public class ItemRingRepair extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
         tooltip.add(Component.translatable("item." + RingsOfRepair.MOD_ID + ".ring_of_repair.tip1").withStyle(ChatFormatting.DARK_GRAY));
         tooltip.add(Component.translatable("item." + RingsOfRepair.MOD_ID + ".ring_of_repair.tip2").withStyle(ChatFormatting.DARK_GREEN));
     }

@@ -3,7 +3,7 @@ package com.teexez.repiarrings;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +19,7 @@ public class RingsOfRepair implements ModInitializer {
 
         Registry.register(
                 BuiltInRegistries.ITEM,
-                ResourceLocation.of(MOD_ID, "ring_of_repair"),
+                Identifier.of(MOD_ID, "ring_of_repair"),
                 RING_OF_REPAIR
         );
 

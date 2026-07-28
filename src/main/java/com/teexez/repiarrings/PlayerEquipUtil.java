@@ -1,8 +1,8 @@
 package com.teexez.repiarrings;
 
+import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.inventory.EnderChestInventory;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.server.level.ServerPlayer;
@@ -44,7 +44,7 @@ public final class PlayerEquipUtil {
 
     public static boolean hasItemInEnderchest(Player player, Item item) {
         if (!(player instanceof ServerPlayer serverPlayer)) return false;
-        EnderChestInventory inv = serverPlayer.getEnderChestInventory();
+        Container inv = serverPlayer.getEnderChestInventory();
         int size = inv.getContainerSize();
         for (int slot = 0; slot < size; slot++) {
             ItemStack stack = inv.getItem(slot);
@@ -57,7 +57,7 @@ public final class PlayerEquipUtil {
 
     public static ItemStack getItemStackInEnderchest(Player player, Item item) {
         if (!(player instanceof ServerPlayer serverPlayer)) return ItemStack.EMPTY;
-        EnderChestInventory inv = serverPlayer.getEnderChestInventory();
+        Container inv = serverPlayer.getEnderChestInventory();
         int size = inv.getContainerSize();
         for (int slot = 0; slot < size; slot++) {
             ItemStack stack = inv.getItem(slot);
