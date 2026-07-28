@@ -17,6 +17,8 @@ public class RingsOfRepair implements ModInitializer {
     public void onInitialize() {
         ModConfig.setup();
 
+        RING_OF_REPAIR = new ItemRingRepair(new Item.Properties().stacksTo(1));
+
         Registry.register(
                 BuiltInRegistries.ITEM,
                 Identifier.fromNamespaceAndPath(MOD_ID, "ring_of_repair"),
@@ -24,9 +26,5 @@ public class RingsOfRepair implements ModInitializer {
         );
 
         TabInit.addTab();
-    }
-
-    static {
-        RING_OF_REPAIR = new ItemRingRepair(new Item.Properties().stacksTo(1));
     }
 }
