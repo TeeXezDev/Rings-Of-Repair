@@ -1,0 +1,35 @@
+{
+	"schemaVersion": 1,
+	"id": "teexezringsrepiar",
+	"version": "${version}",
+	"name": "Rings Of Repair",
+	"description": "Slowly repairs damaged items in player inventory",
+	"authors": [
+		"kwpugh",
+		"teexez"
+	],
+	"contact": {
+		"homepage": "https://github.com/teexez/RingsOfRepiar",
+		"sources": "https://github.com/teexez/RingsOfRepiar"
+	},
+	"license": "MIT",
+	"icon": "assets/teexezringsrepiar/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.teexez.repiarrings.RingsOfRepair"
+		],
+		"client": [
+			"com.teexez.repiarrings.client.RingsOfRepairClient"
+		]
+	},
+	"mixins": [
+		"teexezringsrepiar.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}

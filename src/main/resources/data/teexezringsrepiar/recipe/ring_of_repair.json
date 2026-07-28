@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern":
+  [
+    "CBC",
+    "DAD",
+    "EEE"
+  ],
+
+  "key":
+  {
+    "A":
+    {
+      "item": "minecraft:anvil"
+    },
+    "B":
+    {
+      "item": "minecraft:emerald"
+    },
+    "C":
+    {
+      "item": "minecraft:diamond"
+    },
+    "D":
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    "E":
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+
+  "result":
+  {
+    "id": "teexezringsrepiar:ring_of_repair",
+    "count": 1
+  }
+}
