@@ -2,6 +2,7 @@ package com.teexez.repiarrings;
 
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
@@ -21,7 +22,10 @@ public class RingsOfRepair implements ModInitializer {
     public void onInitialize() {
         ModConfig.setup();
 
-        RING_OF_REPAIR = new ItemRingRepair(new Item.Properties().stacksTo(1).setId(RING_OF_REPAIR_KEY));
+        RING_OF_REPAIR = new ItemRingRepair(new Item.Properties()
+                .stacksTo(1)
+                .setId(RING_OF_REPAIR_KEY)
+                .component(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath(MOD_ID, "item/ring_of_repair")));
 
         Registry.register(
                 BuiltInRegistries.ITEM,
