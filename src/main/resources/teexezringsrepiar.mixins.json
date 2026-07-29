@@ -2,9 +2,7 @@
 	"required": true,
 	"package": "com.teexez.repiarrings.mixin",
 	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"PlayerEntityMixinTick"
-	],
+	"mixins": [],
 	"injectors": {
 		"defaultRequire": 1
 	}

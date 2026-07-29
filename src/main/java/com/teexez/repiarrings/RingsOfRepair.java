@@ -1,12 +1,14 @@
 package com.teexez.repiarrings;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,5 +36,14 @@ public class RingsOfRepair implements ModInitializer {
         );
 
         TabInit.addTab();
+
+        ServerTickEvents.START_WORLD_TICK.register(world -> {
+            for (Player player : world.players()) {
+                if (PlayerEquipUtil.hasItemInInventory(player, RING_OF_REPAIR) ||
+                        PlayerEquipUtil.hasItemInEnderchest(player, RING_OF_REPAIR)) {
+                    ItemRingRepair.repairItems(world, player);
+                }
+            }
+        });
     }
 }

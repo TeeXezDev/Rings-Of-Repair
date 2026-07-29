@@ -5,7 +5,6 @@
 	"name": "Rings Of Repair",
 	"description": "Slowly repairs damaged items in player inventory",
 	"authors": [
-		"kwpugh",
 		"teexez"
 	],
 	"contact": {
