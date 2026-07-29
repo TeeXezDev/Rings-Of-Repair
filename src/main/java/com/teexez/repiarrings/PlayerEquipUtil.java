@@ -21,9 +21,11 @@ public final class PlayerEquipUtil {
     public static boolean hasItemInInventory(Player player, Item item) {
         Inventory inv = player.getInventory();
         int size = inv.getContainerSize();
+        RingsOfRepair.LOGGER.info("hasItemInInventory: containerSize={}, item={}", size, item);
         for (int slot = 0; slot < size; slot++) {
             ItemStack stack = inv.getItem(slot);
             if (stack.getItem() == item) {
+                RingsOfRepair.LOGGER.info("hasItemInInventory: FOUND ring at slot {} (stack={})", slot, stack);
                 return true;
             }
         }
@@ -46,9 +48,11 @@ public final class PlayerEquipUtil {
         if (!(player instanceof ServerPlayer serverPlayer)) return false;
         Container inv = serverPlayer.getEnderChestInventory();
         int size = inv.getContainerSize();
+        RingsOfRepair.LOGGER.info("hasItemInEnderchest: containerSize={}, item={}", size, item);
         for (int slot = 0; slot < size; slot++) {
             ItemStack stack = inv.getItem(slot);
             if (stack.getItem() == item) {
+                RingsOfRepair.LOGGER.info("hasItemInEnderchest: FOUND ring at slot {} (stack={})", slot, stack);
                 return true;
             }
         }

@@ -26,10 +26,16 @@ public class ItemRingRepair extends Item {
         if (world.isClientSide()) return;
 
         ServerPlayer serverPlayer = (ServerPlayer) player;
+        int interval = ModConfig.getConfig().ringRepairInterval;
 
-        if (serverPlayer.tickCount % ModConfig.getConfig().ringRepairInterval != 0) return;
+        if (serverPlayer.tickCount % interval != 0) return;
 
-        for (int i = 0; i < serverPlayer.getInventory().getContainerSize(); i++) {
+        int containerSize = serverPlayer.getInventory().getContainerSize();
+        RingsOfRepair.LOGGER.info("repairItems: player={}, containerSize={}, tickCount={}, interval={}",
+                player.getName().getString(), containerSize, serverPlayer.tickCount, interval);
+
+        boolean repaired = false;
+        for (int i = 0; i < containerSize; i++) {
             ItemStack stack2 = serverPlayer.getInventory().getItem(i);
 
             if (stack2.is(TagInit.RING_REPAIR_BLACKLIST)) continue;
@@ -38,8 +44,15 @@ public class ItemRingRepair extends Item {
             if (stack2 == serverPlayer.getMainHandItem()) continue;
             if (!stack2.isDamaged()) continue;
 
+            RingsOfRepair.LOGGER.info("repairItems: repairing slot {} item {} damage {} -> {}",
+                    i, stack2.getItem(), stack2.getDamageValue(), stack2.getDamageValue() - 1);
             stack2.setDamageValue(stack2.getDamageValue() - 1);
+            repaired = true;
             break;
+        }
+
+        if (!repaired) {
+            RingsOfRepair.LOGGER.info("repairItems: no damaged item found in {} slots", containerSize);
         }
     }
 
